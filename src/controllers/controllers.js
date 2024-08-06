@@ -26,7 +26,7 @@ async function obtenerTodo(req, res){
 async function nuevaTask(req, res){
     const conexion = await newConnection()
     const {title, description, isComplete}= req.body
-    const regex = /^\S+$/;
+    const regex = /^(\S+)( \S+)*$/
     
     if(title.length === 0 || description.length === 0){
         res.json({msg: "Los campos no deben estar vacios."})
@@ -44,7 +44,7 @@ async function editarTask(req, res){
     const conexion = await newConnection();
     const id = parseInt(req.params.id);
     const {title, description, isComplete} = req.body
-    const regex = /^\S+$/;
+    const regex = /^(\S+)( \S+)*$/
     
     if(title.length === 0 || description.length === 0){
         res.json({msg: "Los campos no deben estar vacios."})
