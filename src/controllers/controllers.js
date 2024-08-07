@@ -22,7 +22,7 @@ async function obtenerId(req, res){
 async function obtenerTodo(req, res){
     try{
         const conexion = await newConnection()
-        const result = await conexion.query("SELECT * FROM tasks")
+        const [result] = await conexion.query("SELECT * FROM tasks")
         if(result.length === 0){
             res.status(404).json({msg: "No hay tareas disponibles."});
         } else{
